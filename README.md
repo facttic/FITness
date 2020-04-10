@@ -11,5 +11,20 @@ The expected workflow is to: create an opportunity > identify co-operatives that
 
 ## Setting up
 
+### Backend
+
+#### Pre-requisites
+- Python 3.7 or later
+- Pipenv
+
+#### Start and configure local env
+    $ pipenv shell
+    $ pipenv install
+    
+#### Migrate models, create superuser and start server
+
+    $ pipenv run python manage.py migrate
+    $ pipenv run python manage.py createsuperuser
+    $ pipenv run python manage.py runserver
 
 ## Using
