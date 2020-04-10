@@ -2,12 +2,20 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class Candidate(models.Model):
+class SeniorityLevel(models.TextChoices):
+    JUNIOR = 'JR', _('Junior')
+    SEMI_SENIOR = 'SSR', _('Semisenior')
+    SENIOR = 'SR', _('Senior')
+    NINJA = 'NJ', _('Ninja')
 
-    class EnglishLevel(models.TextChoices):
-        JUNIOR = 'JR', _('Junior')
-        ADVANCED = 'AD', _('Advanced')
-        NATIVE = 'NT', _('Native')
+
+class EnglishLevel(models.TextChoices):
+    JUNIOR = 'JR', _('Junior')
+    ADVANCED = 'AD', _('Advanced')
+    NATIVE = 'NT', _('Native')
+
+
+class Candidate(models.Model):
 
     class Availability(models.TextChoices):
         BUSY = 'BS', _('Busy')
@@ -36,14 +44,10 @@ class Technology(models.Model):
 
 class CandidateExperience(models.Model):
 
-    class SeniorityLevel(models.TextChoices):
-        JUNIOR = 'JR', _('Junior')
-        SEMISENIOR = 'SSR', _('Semisenior')
-        SENIOR = 'SR', _('Senior')
-        NINJA = 'NJ', _('Ninja')
-
-    models.ForeignKey(Candidate, on_delete=models.CASCADE, blank=False, null=False, verbose_name=_('candidate'))
-    models.ForeignKey(Technology, on_delete=models.CASCADE, blank=False, null=False, verbose_name=_('technology'))
+    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, blank=False, null=False,
+                                  verbose_name=_('candidate'))
+    technology = models.ForeignKey(Technology, on_delete=models.CASCADE, blank=False, null=False,
+                                   verbose_name=_('technology'))
 
     seniority = models.CharField(
         max_length=3,
@@ -51,4 +55,7 @@ class CandidateExperience(models.Model):
         default=SeniorityLevel.JUNIOR,
     )
 
-    experience_years = models.PositiveIntegerField()
+    experience_years = models.PositiveIntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return "{}-{}".format(self.technology.name, self.seniority)
