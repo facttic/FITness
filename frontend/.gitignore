@@ -10,6 +10,10 @@
 
 # production
 /build
+frontend/dist
+/frontend/dist
+package-lock.json
+frontend/package-lock.json
 
 # misc
 .DS_Store
