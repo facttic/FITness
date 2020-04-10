@@ -28,3 +28,18 @@ The expected workflow is to: create an opportunity > identify co-operatives that
     $ pipenv run python manage.py runserver
 
 ## Using
+
+
+## Running Frontend
+
+1. Install node dependencies:
+
+	      cd frontend && npm install && npm run build
+
+2. Start the frontend app:
+        
+        cd frontend && npm start
+
+3. App core and landing page should be accesible on:
+
+        http://localhost:3000/
