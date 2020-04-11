@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from FITness.cooperative.models import Cooperative
+
 
 class SeniorityLevel(models.TextChoices):
     JUNIOR = 'JR', _('Junior')
@@ -22,6 +24,8 @@ class Candidate(models.Model):
         FREE = 'FR', _('Free')
         COULD_BE_FREE = 'CBF', _('Could be free')
 
+    cooperative = models.ForeignKey(Cooperative, on_delete=models.CASCADE, blank=False, null=False,
+                                    verbose_name=_('cooperative'))
     name = models.CharField(_('name'), max_length=256)
     english_level = models.CharField(
         max_length=2,
@@ -42,20 +46,23 @@ class Technology(models.Model):
     name = models.CharField(_('name'), max_length=256)
 
 
-class CandidateExperience(models.Model):
-
-    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, blank=False, null=False,
-                                  verbose_name=_('candidate'))
+class TechnologyExpertise(models.Model):
     technology = models.ForeignKey(Technology, on_delete=models.CASCADE, blank=False, null=False,
                                    verbose_name=_('technology'))
-
     seniority = models.CharField(
         max_length=3,
         choices=SeniorityLevel.choices,
         default=SeniorityLevel.JUNIOR,
     )
-
     experience_years = models.PositiveIntegerField(blank=True, null=True)
+
+    class Meta:
+        abstract = True
+
+
+class CandidateExpertise(TechnologyExpertise):
+    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, blank=False, null=False,
+                                  verbose_name=_('candidate'))
 
     def __str__(self):
         return "{}-{}".format(self.technology.name, self.seniority)

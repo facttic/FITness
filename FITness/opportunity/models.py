@@ -2,7 +2,7 @@ import datetime
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from FITness.candidate.models import Technology, SeniorityLevel
+from FITness.candidate.models import TechnologyExpertise
 
 
 class Client(models.Model):
@@ -38,17 +38,9 @@ class Opportunity(models.Model):
         return self.client.name
 
 
-class OpportunityTechnologies(models.Model):
+class OpportunityExpertise(TechnologyExpertise):
     opportunity = models.ForeignKey(Client, on_delete=models.CASCADE, blank=False, null=False,
                                     verbose_name=_('opportunity'))
-    technology = models.ForeignKey(Technology, on_delete=models.CASCADE, blank=False, null=False,
-                                   verbose_name=_('technology'))
-    seniority = models.CharField(
-        max_length=3,
-        choices=SeniorityLevel.choices,
-        default=SeniorityLevel.JUNIOR,
-    )
-    experience_years = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
         return "{}-{}".format(self.technology.name, self.seniority)
