@@ -2,7 +2,7 @@ import datetime
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from FITness.candidate.models import TechnologyExpertise
+from FITness.candidate.models import TechnologyExpertise, SeniorityLevel
 
 
 class Client(models.Model):
@@ -43,4 +43,4 @@ class OpportunityExpertise(TechnologyExpertise):
                                     verbose_name=_('opportunity'))
 
     def __str__(self):
-        return "{}-{}".format(self.technology.name, self.seniority)
+        return "{}-{}".format(self.technology.name, SeniorityLevel(self.seniority).label)
