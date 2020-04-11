@@ -1,10 +1,6 @@
-# Create your views here.
-from rest_framework.response import Response
 from rest_framework import viewsets
-from django.shortcuts import render
-
-from .models import Technology
 from .serializers import *
+
 
 class TechnologyView(viewsets.ModelViewSet):
     """
@@ -21,6 +17,7 @@ class TechnologyView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Technology.objects.all()
+
 
 class CandidateView(viewsets.ModelViewSet):
     """

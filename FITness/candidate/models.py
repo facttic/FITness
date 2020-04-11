@@ -44,6 +44,7 @@ class Candidate(models.Model):
 
 class Technology(models.Model):
     name = models.CharField(_('name'), max_length=256)
+
     def __str__(self):
         return self.name
 
