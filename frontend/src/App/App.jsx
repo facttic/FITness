@@ -3,6 +3,8 @@ import { Route, Router, Switch, Link } from 'react-router-dom';
 import { history } from '@/_helpers';
 import { HomePage } from '@/HomePage';
 import { TechnologyPage } from '@/TechnologyPage';
+import { CandidatePage } from '@/CandidatePage';
+import { OpportunityPage } from '@/OpportunityPage';
 
 class App extends React.Component {
   logout() {
@@ -16,7 +18,7 @@ class App extends React.Component {
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <div className="navbar-nav">
                 <Link to="/"  className="nav-item nav-link">Home</Link>
-                <Link to="/oportunity" className="nav-item nav-link">Oportunity</Link>
+                <Link to="/opportunity" className="nav-item nav-link">Opportunity</Link>
                 <Link to="/candidate" className="nav-item nav-link">Candidate</Link>
                 <Link to="/technology" className="nav-item nav-link">Technology</Link>
                 {/* <a onClick={this.logout} className="nav-item nav-link">Logout</a> */}
@@ -25,30 +27,13 @@ class App extends React.Component {
         </div>
         <Switch>
           <Route exact path='/' component={HomePage}/>
-          <Route path='/oportunity' component={OportunityPage}/>
+          <Route path='/opportunity' component={OpportunityPage}/>
           <Route path='/candidate' component={CandidatePage}/>
           <Route path='/technology' component={TechnologyPage}/>
         </Switch>
       </Router>
     );
   }
-}
-
-
-function OportunityPage() {
-  return (
-    <div className="container">
-      <h2>Oportunity!</h2>
-    </div>
-  );
-}
-
-function CandidatePage() {
-  return (
-    <div className="container">
-      <h2>Candidate!</h2>
-    </div>
-  );
 }
 
 export {App};

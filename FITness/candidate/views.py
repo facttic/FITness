@@ -1,6 +1,6 @@
 # Create your views here.
 from rest_framework.response import Response
-from rest_framework import viewsets, status
+from rest_framework import viewsets
 from django.shortcuts import render
 
 from .models import Technology
@@ -12,7 +12,7 @@ class TechnologyView(viewsets.ModelViewSet):
     Returns the list of Technologies.
 
     create:
-    Creates a Technology for the current cooperative.
+    Creates a Technology.
 
     destroy:
     Removes the selected Technology.
@@ -21,3 +21,19 @@ class TechnologyView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Technology.objects.all()
+
+class CandidateView(viewsets.ModelViewSet):
+    """
+    list:
+    Returns the list of Candidates.
+
+    create:
+    Creates a Candidate.
+
+    destroy:
+    Removes the selected Candidate.
+    """        
+    serializer_class = CandidatesSerializer
+
+    def get_queryset(self):
+        return Candidate.objects.all()
