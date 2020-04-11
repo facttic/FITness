@@ -22,7 +22,7 @@ const TechnologyPage = () => {
                     <tr><th>Name</th></tr>
                 </thead>
                 <tbody>
-                    {technologies.map((technology,i) => <tr><td>{technology.name}</td></tr>) }
+                    {technologies.map((technology,i) => <tr key={technology.name}><td>{technology.name}</td></tr>) }
                 </tbody>
             </Table>
         </div>

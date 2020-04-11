@@ -19,7 +19,7 @@ class App extends React.Component {
                 <Link to="/oportunity" className="nav-item nav-link">Oportunity</Link>
                 <Link to="/candidate" className="nav-item nav-link">Candidate</Link>
                 <Link to="/technology" className="nav-item nav-link">Technology</Link>
-                <a onClick={this.logout} className="nav-item nav-link">Logout</a>
+                {/* <a onClick={this.logout} className="nav-item nav-link">Logout</a> */}
             </div>
           </nav>
         </div>
