@@ -40,12 +40,12 @@ The expected workflow is to: create an opportunity > identify co-operatives that
 
 1. Install node dependencies:
 
-	      cd frontend && npm install && npm run build
+    $ cd frontend && npm install && npm run build
 
 2. Start the frontend app:
         
-        cd frontend && npm run serve
+    $ cd frontend && npm run serve
 
 3. App core and landing page should be accesible on:
 
-        http://localhost:8080/
+    http://localhost:8080/
