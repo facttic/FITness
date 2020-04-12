@@ -19,9 +19,9 @@ const Table = ({ data }) =>
           ))}
         </tbody>
       </table>
-      <h5 className="subtitle">
-        Hay <strong>{data.length} items</strong>
-      </h5>
+      <p className="subtitle">
+        <strong>{data.length}</strong> items
+      </p>
     </div>
   );
 
