@@ -9,7 +9,7 @@ const OpportunityPage = () => {
 
     return <>
         <div className="container">
-            <h2>Opportunities</h2>
+            <h2>Oportunidades</h2>
             <DataProvider endpoint={API_URL} render={data => <Table data={data} />} />
             {/* <Form endpoint={API_URL} /> */}
         </div>

@@ -5,7 +5,7 @@ class HomePage extends React.Component {
         return (
             <div className="container">
                 <h2>Bienvenidxs a FITness!</h2>
-                <p>Esta es una aplicación para cargar oportunidades de trabajo para el FIT.</p>
+                <p>Una aplicación para cargar oportunidades de trabajo para el FIT.</p>
             </div>
         );
     }

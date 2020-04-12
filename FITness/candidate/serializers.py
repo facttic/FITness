@@ -13,4 +13,6 @@ class CandidatesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Candidate 
-        fields = ('pk', 'name', 'english_level', 'availability')
+        fields = ('name', 'english_level', 'availability')
+
+    english_level

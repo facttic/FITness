@@ -18,9 +18,9 @@ class App extends React.Component {
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <div className="navbar-nav">
                 <Link to="/"  className="nav-item nav-link">Home</Link>
-                <Link to="/opportunity" className="nav-item nav-link">Opportunity</Link>
-                <Link to="/candidate" className="nav-item nav-link">Candidate</Link>
-                <Link to="/technology" className="nav-item nav-link">Technology</Link>
+                <Link to="/opportunity" className="nav-item nav-link">Oportunidades</Link>
+                <Link to="/candidate" className="nav-item nav-link">Perfiles</Link>
+                <Link to="/technology" className="nav-item nav-link">Tecnologias</Link>
                 {/* <a onClick={this.logout} className="nav-item nav-link">Logout</a> */}
             </div>
           </nav>
