@@ -6,7 +6,7 @@ import { TechnologyPage } from '@/TechnologyPage';
 import { CandidatePage } from '@/CandidatePage';
 import { CooperativePage } from '@/CooperativePage';
 import { OpportunityPage } from '@/OpportunityPage';
-
+import { WizardComponent } from '@/WizardComponent'
 class App extends React.Component {
   logout() {
     history.push('/login');
@@ -23,6 +23,7 @@ class App extends React.Component {
                 <Link to="/opportunity" className="nav-item nav-link">Oportunidades</Link>
                 <Link to="/candidate" className="nav-item nav-link">Perfiles</Link>
                 <Link to="/technology" className="nav-item nav-link">Tecnologias</Link>
+                <Link to="/new-opportunity" className="nav-item nav-link">New Opportunity</Link>
                 {/* <a onClick={this.logout} className="nav-item nav-link">Logout</a> */}
             </div>
           </nav>
@@ -33,6 +34,7 @@ class App extends React.Component {
           <Route path='/opportunity' component={OpportunityPage}/>
           <Route path='/candidate' component={CandidatePage}/>
           <Route path='/technology' component={TechnologyPage}/>
+          <Route path='/new-opportunity' component={WizardComponent}/>
         </Switch>
       </Router>
     );
