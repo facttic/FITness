@@ -28,19 +28,28 @@ class Opportunity(models.Model):
         choices=OpportunityMode.choices,
         default=OpportunityMode.NOT_DEFINED,
     )
-    candidates_qty = models.PositiveIntegerField(blank=True, null=True)
     mandatory_english = models.BooleanField(default=False)
     more_info = models.TextField(_('info'), blank=True, null=True)
-    rate = models.CharField(_('rate'), max_length=256)
+    rate = models.CharField(_('rate'), max_length=256, blank=True, null=True)
     date = models.DateField(_('date'), default=datetime.date.today)
 
     def __str__(self):
         return self.client.name
 
 
-class OpportunityExpertise(TechnologyExpertise):
-    opportunity = models.ForeignKey(Client, on_delete=models.CASCADE, blank=False, null=False,
+class OpportunityProfile(models.Model):
+    opportunity = models.ForeignKey(Opportunity, on_delete=models.CASCADE, blank=False, null=False,
                                     verbose_name=_('opportunity'))
+    profiles_qty = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
-        return "{}-{}".format(self.technology.name, SeniorityLevel(self.seniority).label)
+        return "Cliente: {} - Perfiles: {}".format(self.opportunity.client.name, self.profiles_qty)
+
+
+class ProfileExpertise(TechnologyExpertise):
+    opportunity_profile = models.ForeignKey(OpportunityProfile, on_delete=models.CASCADE, blank=False, null=False,
+                                            verbose_name=_('opportunity_profile'))
+
+    def __str__(self):
+        return "{} profiles: {} / {}".format(self.opportunity_profile.profiles_qty, self.technology.name,
+                                             SeniorityLevel(self.seniority).label)

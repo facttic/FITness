@@ -83,4 +83,5 @@ class CandidateExpertise(TechnologyExpertise):
                                   verbose_name=_('candidate'))
 
     def __str__(self):
-        return "{} ({}): {}-{}".format(self.candidate.name, self.candidate.cooperative.name, self.technology.name, SeniorityLevel(self.seniority).label)
+        return "{} ({}): {}-{}".format(self.candidate.name, self.candidate.cooperative.name, self.technology.name,
+                                       SeniorityLevel(self.seniority).label)
