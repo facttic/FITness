@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
 from FITness.cooperative.models import Cooperative
@@ -17,13 +19,13 @@ class EnglishLevel(models.TextChoices):
     NATIVE = 'NT', _('Native')
 
 
-class Candidate(models.Model):
-
-    class Availability(models.TextChoices):
+class CandidateAvailability(models.TextChoices):
         BUSY = 'BS', _('Busy')
         FREE = 'FR', _('Free')
         COULD_BE_FREE = 'CBF', _('Could be free')
 
+
+class Candidate(models.Model):
     cooperative = models.ForeignKey(Cooperative, on_delete=models.CASCADE, blank=False, null=False,
                                     verbose_name=_('cooperative'))
     name = models.CharField(_('name'), max_length=256)
@@ -34,12 +36,27 @@ class Candidate(models.Model):
     )
     availability = models.CharField(
         max_length=3,
-        choices=Availability.choices,
-        default=Availability.FREE,
+        choices=CandidateAvailability.choices,
+        default=CandidateAvailability.FREE,
     )
 
+    __original_availability = None
+
+    def __init__(self, *args, **kwargs):
+        super(Candidate, self).__init__(*args, **kwargs)
+        self.__original_availability = self.availability
+
+    def save(self, *args, **kwargs):
+        new = not self.pk
+        super().save(*args, **kwargs)
+        if new or self.availability != self.__original_availability:
+            candidates = Candidate.objects.filter(cooperative=self.cooperative)
+            all_candidates = candidates.count()
+            free_candidates = candidates.filter(availability=CandidateAvailability.FREE).count()
+            self.cooperative.set_status(all_candidates, free_candidates)
+
     def __str__(self):
-        return self.name
+        return "{}: {}".format(self.name, CandidateAvailability(self.availability).label)
 
 
 class Technology(models.Model):
