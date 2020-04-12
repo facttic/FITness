@@ -1,5 +1,11 @@
+
+> Este proyecto fue hecho en el marco de [Hacktic](https://hackdash.org/projects/5e7e205a875b954b4a1d13de), una Hackaton dónde participan múltiples cooperativas de [Facttic](https://facttic.org.ar/)  
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](docs/code_of_conduct.md)
+
+
+
 # FITness
-Web platform developed to manage collaborative work opportunities between software development cooperatives. 
+Web platform developed to manage collaborative work opportunities between software development cooperatives.
 
 This is a HackTic 2020 project by in which developers of cooperatives associated with FACTTIC participated.
 
