@@ -33,6 +33,10 @@ class Opportunity(models.Model):
     rate = models.CharField(_('rate'), max_length=256, blank=True, null=True)
     date = models.DateField(_('date'), default=datetime.date.today)
 
+    @property
+    def mode_description(self):
+        return self.OpportunityMode(self.mode).label
+
     def __str__(self):
         return self.client.name
 

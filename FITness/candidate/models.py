@@ -56,6 +56,14 @@ class Candidate(models.Model):
     def __str__(self):
         return "{}: {}".format(self.name, CandidateAvailability(self.availability).label)
 
+    @property
+    def english_level_description(self):
+        return EnglishLevel(self.english_level).label
+
+    @property
+    def availability_description(self):
+        return CandidateAvailability(self.availability).label
+
 
 class Technology(models.Model):
     name = models.CharField(_('name'), max_length=256)

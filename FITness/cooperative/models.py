@@ -32,3 +32,7 @@ class Cooperative(models.Model):
         else:
             self.status = self.CooperativeStatus.INACTIVE
         self.save()
+
+    @property
+    def status_description(self):
+        return self.CooperativeStatus(self.status).label
