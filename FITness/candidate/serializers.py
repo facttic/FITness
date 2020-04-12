@@ -10,6 +10,8 @@ class TechnologySerializer(serializers.ModelSerializer):
 
 
 class CandidatesSerializer(serializers.ModelSerializer):
+    english_level = serializers.CharField(source='english_level_description', read_only=True)
+    availability = serializers.CharField(source='availability_description', read_only=True)
 
     class Meta:
         model = Candidate 
