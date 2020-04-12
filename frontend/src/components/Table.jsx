@@ -5,9 +5,6 @@ import key from "weak-key";
 const Table = ({ data }) =>
   !data.length ? null : (
     <div className="column">
-      <h2 className="subtitle">
-        There are <strong>{data.length} items</strong>
-      </h2>
       <table className="table is-striped">
         <thead>
           <tr>
@@ -22,6 +19,9 @@ const Table = ({ data }) =>
           ))}
         </tbody>
       </table>
+      <p className="subtitle">
+        <strong>{data.length}</strong> items
+      </p>
     </div>
   );
 

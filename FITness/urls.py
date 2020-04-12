@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from FITness.candidate.views import TechnologyView, CandidateView
+from FITness.cooperative.views import CooperativeView
 from FITness.opportunity.views import OpportunityView
 
 router = routers.DefaultRouter()
 router.register(r'technologies', TechnologyView, basename="Technology")
 router.register(r'candidates', CandidateView, basename="Candidate")
 router.register(r'opportunities', OpportunityView, basename="Opportunity")
+router.register(r'cooperatives', CooperativeView, basename="Cooperative")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
